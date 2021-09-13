@@ -1,0 +1,111 @@
+.pageWrap {
+  min-height: calc(100vh - (var(--page-border) * 2));
+  position: relative;
+  background: var(--navy);
+  overflow: hidden;
+  transition: background 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  &::before,
+  &::after {
+    content: "";
+    will-change: top left;
+    backface-visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: var(--page-border);
+    height: 100%;
+    background: var(--lightest-navy);
+    z-index: 20000;
+  }
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+  .loader__wrapper {
+    position: fixed;
+    margin: var(--page-border);
+    z-index: 1000;
+    height: calc(100vh - (var(--page-border) * 2));
+    width: calc(100vw - (var(--page-border) * 2));
+    top: 0;
+    left: 0;
+    background-color: var(--dark-slate);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    &.open {
+      height: calc(100vh - (var(--page-border) * 2));
+    }
+    &.close {
+      height: 0;
+    }
+    .loader {
+      .ball {
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: block;
+        margin: auto;
+        margin-top: 2rem;
+        -webkit-animation: motion 3s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        animation: motion 3s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+      }
+      h1 {
+        color: var(--lightest-slate);
+        font-weight: 400;
+        font-size: 5rem;
+        line-height: 5rem;
+        font-family: var(--font-header);
+        width: max-content;
+        &.hasBefore::before {
+          content: "<h1>";
+          margin-top: -2.5rem;
+          left: -2rem;
+        }
+        &.hasAfter::after {
+          content: "</h1>";
+          position: relative;
+          right: -0.5rem;
+          bottom: 0rem;
+        }
+        span {
+          display: inline-block;
+          transition: all 0.3s ease-in-out;
+          transition-property: color, transform;
+          &.empty {
+            width: 1.2rem;
+          }
+          &:hover {
+            color: var(--green);
+            animation: effect linear 0.5s;
+            -webkit-animation: effect 0.5s;
+            -moz-animation: effect linear 0.5s;
+            -o-animation: effect linear 0.5s;
+          }
+        }
+      }
+
+      @keyframes motion {
+        0% {
+          transform: translateX(0) scale(1);
+        }
+        25% {
+          transform: translateX(50px) scale(0.3);
+        }
+        50% {
+          transform: translateX(0) scale(1);
+        }
+        75% {
+          transform: translateX(-50px) scale(0.3);
+        }
+        100% {
+          transform: translateX(0) scale(1);
+        }
+      }
+    }
+  }
+}
