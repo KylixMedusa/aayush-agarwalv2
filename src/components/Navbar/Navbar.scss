@@ -1,0 +1,140 @@
+.navbar {
+  position: fixed;
+  top: calc(var(--page-border) + 10px);
+  left: calc(var(--page-border) + 10px);
+  z-index: 500;
+  width: calc(100% - ((var(--page-border) + 10px) * 2));
+  header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    .logo__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      .logo__sugarloaf {
+        position: relative;
+        cursor: pointer;
+        width: 80px;
+        height: 80px;
+        .logo,
+        .shade {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0px;
+          top: 0px;
+          z-index: 1;
+          fill: none;
+        }
+        .logo {
+          stroke: var(--green);
+          polygon {
+            stroke-width: 5px;
+          }
+          path {
+            stroke-width: 1.5px;
+          }
+        }
+        .shade {
+          left: -1px;
+          top: 5px;
+          z-index: 0;
+          fill: var(--dark-slate);
+          transition: var(--transition);
+          backface-visibility: hidden;
+        }
+        &:hover .shade {
+          top: -5px;
+          left: -2px;
+        }
+      }
+      .logo--textContainer {
+        padding-left: 24px;
+        position: relative;
+        .spanWrapper {
+          height: 0.8rem;
+          overflow: hidden;
+        }
+        span {
+          font-size: 0.8rem;
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          color: var(--light-slate);
+          cursor: pointer;
+          transition: var(--transition);
+          display: block;
+          font-family: var(--font-mono);
+          &:hover {
+            color: var(--green);
+          }
+          display: block;
+        }
+        &.close {
+          span:first-child {
+            margin-top: -0.8rem;
+          }
+        }
+        &::before {
+          content: "";
+          height: 30px;
+          width: 1px;
+          background: var(--light-slate);
+          position: absolute;
+          top: 50%;
+          left: 8px;
+          transform: translateY(-50%);
+        }
+      }
+      &.right {
+        .logo__sugarloaf {
+          padding-right: 6px;
+          width: 60px;
+          height: 60px;
+          order: 2;
+          .shade {
+            left: 3px;
+            top: 8px;
+            z-index: 0;
+            fill: var(--dark-slate);
+            transition: var(--transition);
+            backface-visibility: hidden;
+          }
+          &:hover .shade {
+            top: 0px;
+            left: 0px;
+          }
+        }
+        .logo--textContainer {
+          padding-left: 0px;
+          padding-right: 28px;
+          &::before {
+            // display: none;
+            right: 12px;
+            left: auto;
+          }
+        }
+      }
+    }
+  }
+  menu {
+    position: fixed;
+    margin: var(--page-border);
+    // height: calc(100vh - 40px);
+    height: 0;
+    width: calc(100vw - (var(--page-border) * 2));
+    top: 0;
+    left: 0;
+    background-color: var(--dark-slate);
+    transition: var(--transition);
+    &.open {
+      height: calc(100vh - 40px);
+    }
+    &.close {
+      height: 0;
+    }
+  }
+}
