@@ -1,0 +1,110 @@
+.featured--project {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(12, 1fr);
+  -webkit-box-align: center;
+  align-items: center;
+  .project--image {
+    position: relative;
+    grid-area: 1 / 7 / -1 / -1;
+    width: 100%;
+  }
+  .project--content {
+    transition: var(--transition);
+    position: relative;
+    grid-area: 1 / 1 / -1 / 8;
+    z-index: 1;
+    h3 {
+      color: var(--lightest-slate);
+      font-size: 1.7rem;
+    }
+    .content--div {
+      background: var(--light-navy);
+      border-radius: 5px;
+      padding: 25px;
+      margin: 15px 0 5px 0;
+      box-shadow: 0 10px 30px -15px var(--navy-shadow);
+      p:not(:last-child) {
+        margin-bottom: 0.6rem;
+      }
+    }
+    .tech-stack {
+      font-family: var(--font-mono);
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0px;
+      padding: 0px;
+      span {
+        margin: 0px 20px 5px 0px;
+      }
+    }
+    .project-links {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      position: relative;
+      margin-top: 10px;
+      margin-left: -10px;
+      color: var(--lightest-slate);
+      a {
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 10px;
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+        color: var(--lightest-slate);
+        &:hover {
+          color: var(--green);
+        }
+      }
+    }
+  }
+  &:nth-child(2n + 1) {
+    .project--content {
+      grid-column: 6 / -1;
+      text-align: right;
+      .tech-stack {
+        justify-content: flex-end;
+        span {
+          margin: 0px 0px 5px 20px;
+        }
+      }
+      .project-links {
+        margin-left: 0;
+        margin-right: -10px;
+        justify-content: flex-end;
+      }
+    }
+    .project--image {
+      grid-column: 1 / 7;
+    }
+  }
+  &:not(:last-of-type) {
+    margin-bottom: 100px;
+  }
+  @media screen and (max-width: 786px) {
+    display: block;
+    .project--image {
+      border-radius: 5px 5px 0 0;
+      overflow: hidden;
+    }
+    .project--content {
+      background: var(--light-navy);
+      border-radius: 0 0 5px 5px;
+      padding: 25px;
+      box-shadow: 0 10px 30px -15px var(--navy-shadow);
+      .content--div {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+}

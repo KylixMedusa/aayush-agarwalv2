@@ -67,6 +67,23 @@ code {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: var(--green);
+  background: var(--lightest-slate);
+}
+
+::selection {
+  background: var(--green);
+  color: var(--dark-navy);
 }
 
 .tag {
@@ -123,7 +140,7 @@ h2.section-title {
     color: var(--lightest-slate);
     font-size: 4rem;
     line-height: 4rem;
-    span {
+    > span {
       display: inline-block;
       transition: all 0.3s ease-in-out;
       transition-property: color, transform;
@@ -168,6 +185,21 @@ p.section-subtitle {
   }
   &::after {
     content: "</section>";
+    left: -2rem;
+    bottom: -3rem;
+  }
+}
+
+.tag.form {
+  position: relative;
+  margin: 3rem 0;
+  &::before {
+    content: "<form>";
+    margin-top: -2.5rem;
+    left: -2rem;
+  }
+  &::after {
+    content: "</form>";
     left: -2rem;
     bottom: -3rem;
   }
@@ -228,6 +260,28 @@ ul.section-list {
       border-left-color: var(--slate);
     }
   }
+}
+
+section {
+  .flex-sb {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+    }
+  }
+}
+
+.is-not-visible {
+  opacity: 0;
+  transition: var(--transition);
+  will-change: opacity;
+}
+.is-visible {
+  opacity: 1;
+  will-change: opacity;
 }
 
 @font-face {

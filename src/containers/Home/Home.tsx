@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Button from "../../components/Button/Button";
 import Image from "../../components/Image/Image";
 import profileImage from "../../assets/images/aayush.jpeg";
@@ -6,57 +6,20 @@ import { getSpannedTitle } from "../../utils";
 import "./Home.scss";
 import Experience from "../../components/Experience/Experience";
 import Footer from "../../components/Footer/Footer";
+import Map from "../../components/Image/Map";
+import ContactForm from "../../components/ContactForm/ContactForm";
+import Hero from "../../components/Hero/Hero";
+import FeaturedProject from "../../components/FeaturedProject/FeaturedProject";
+import { featuredProjects } from "../../data";
+import FadeInSection from "../../components/FadeInSection";
 
 const Home: React.FC = () => {
-  const [scroll, setScroll] = useState(0);
-  const handleScroll = () => {
-    setScroll(window.scrollY);
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <div className="home">
-      <header className="hero--wrapper">
-        <div className="hero--container">
-          <section>
-            <div
-              className="hero"
-              style={{
-                filter: `blur(${scroll / 10 > 50 ? 50 : scroll / 10}px)`,
-                pointerEvents:
-                  scroll > window.innerHeight / 4 ? "none" : "auto",
-              }}
-            >
-              <h1 className="tag hasBefore">{getSpannedTitle("Hi,")}</h1>
-              <h1 className="tag hasAfter">{getSpannedTitle("I’m Aayush")}</h1>
-              <h2 className="tag section-title">
-                I build things, I am an{" "}
-                <span className="outline">Engineer</span>.
-              </h2>
-              <p className="tag section-subtitle">
-                Web Developer, App Developer, Painter, Musician
-              </p>
-              <div className="button-wrapper">
-                <Button text="Contact Me" />
-              </div>
-            </div>
-          </section>
-
-          <div className="center__ChevronElement">
-            <div className="chevron"></div>
-            <div className="chevron"></div>
-            <div className="chevron"></div>
-            <span className="text">Scroll down</span>
-          </div>
-        </div>
-      </header>
+      <Hero />
       <Footer />
       <main className="content--wrapper">
-        <section className="skills">
+        <FadeInSection className="skills">
           <h2 className="tag section-title hasSpans">
             {getSpannedTitle("Me, Myself and I")}
           </h2>
@@ -114,8 +77,8 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
-        <section className="experience">
+        </FadeInSection>
+        <FadeInSection className="experience">
           <h2 className="tag section-title hasSpans">
             {getSpannedTitle("Experience")}
           </h2>
@@ -131,7 +94,7 @@ const Home: React.FC = () => {
               page.
             </p>
             <Button
-              onClick={() => {}}
+              url="/resume"
               text="View Resume"
               style={{ marginTop: "1rem" }}
             />
@@ -139,7 +102,55 @@ const Home: React.FC = () => {
           <div className="tag section">
             <Experience />
           </div>
-        </section>
+        </FadeInSection>
+        <FadeInSection className="projects">
+          <h2 className="tag section-title hasSpans">
+            {getSpannedTitle("Projects")}
+          </h2>
+          <div className="flex-sb">
+            <p className="tag section-subtitle">
+              I’ve worked on a couple of projects during my learning process.
+              Here a couple of my projects which I feel are note-worthy. For all
+              projects visit my{" "}
+              <a href="/work" className="section-link">
+                portfolio
+              </a>{" "}
+              page.
+            </p>
+            <Button
+              url="/portfolio"
+              text="View Portfolio"
+              style={{ marginTop: "1rem" }}
+            />
+          </div>
+          <div className="tag section">
+            {featuredProjects.slice(0, 3).map((project) => (
+              <FeaturedProject {...project} />
+            ))}
+            <Button
+              url="/portfolio"
+              text="View All Projects"
+              style={{
+                marginTop: "3rem",
+              }}
+            />
+          </div>
+        </FadeInSection>
+        <FadeInSection className="contact" id="contact">
+          <h2 className="tag section-title hasSpans">
+            {getSpannedTitle("Get in touch")}
+          </h2>
+          <div className="tag form">
+            <div className="contact--grid">
+              <ContactForm />
+              <div className="contact--content">
+                <div className="map--wrapper">
+                  <Map />
+                </div>
+              </div>
+            </div>
+          </div>
+        </FadeInSection>
       </main>
     </div>
   );

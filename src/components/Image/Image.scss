@@ -24,11 +24,40 @@
     filter: grayscale(100%) contrast(1) brightness(90%);
     transition: var(--transition);
     transition-duration: 0.1s;
+    will-change: mix-blend-mode filter;
   }
+
+  .map__info {
+    position: absolute;
+    z-index: 100;
+    padding: 20px;
+    background-color: var(--navy);
+    margin: 10px;
+    color: var(--lightest-slate);
+  }
+
   &:hover {
+    &::before {
+      display: none;
+    }
     .image__wrapper {
       filter: none;
       mix-blend-mode: normal;
+    }
+    .map__info {
+      display: none;
+    }
+  }
+  &.landscape {
+    aspect-ratio: 16/9;
+    img {
+      aspect-ratio: 16/9;
+    }
+  }
+  &.auto {
+    aspect-ratio: auto;
+    img {
+      aspect-ratio: auto;
     }
   }
 }

@@ -1,0 +1,39 @@
+.portfolio {
+  position: relative;
+  height: max-content;
+  * {
+    max-width: 100%;
+  }
+  .divider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    margin-bottom: 100px;
+    &::before,
+    &::after {
+      content: "";
+      height: 1px;
+      width: 100%;
+      background-color: var(--dark-slate);
+    }
+    &::before {
+      margin-right: 25px;
+    }
+    &::after {
+      margin-left: 25px;
+    }
+  }
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    @media screen and (max-width: 786px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: 480px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
