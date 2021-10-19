@@ -310,6 +310,27 @@ export const experiences = [
   },
 ];
 
+export const educations = [
+  {
+    institution: "Kalyani Government Engineering College",
+    url: "https://www.kgec.edu.in",
+    title: "B.Tech Hons in Information Technology",
+    date: "Jul 2021 - Present",
+    marks: "8.5 CGPA",
+    description:
+      "Pursuing my graduation with Computer Science as my major subject and expect to graduate in 2023.",
+  },
+  {
+    institution: "DAV School, Siliguri",
+    url: "http://www.davsiliguri.com/",
+    title: "12th AISSCE",
+    date: "2019",
+    marks: "94.7%",
+    description:
+      "Completed my 12th in Computer Science with Physics, Chemistry, Mathematics and English.",
+  },
+];
+
 export const urlIconMap = {
   github: (
     <svg

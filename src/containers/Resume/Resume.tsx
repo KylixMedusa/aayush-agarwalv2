@@ -2,7 +2,7 @@ import React from "react";
 import "./Resume.scss";
 import { getSpannedTitle } from "../../utils";
 import Footer from "../../components/Footer/Footer";
-import { experiences } from "../../data";
+import { educations, experiences } from "../../data";
 
 const Resume: React.FC = () => {
   return (
@@ -13,9 +13,32 @@ const Resume: React.FC = () => {
           <h2 className="tag section-title hasSpans">
             {getSpannedTitle("Education")}
           </h2>
-          <div className="tag section" style={{ marginTop: "3rem" }}></div>
+          <div className="tag section" style={{ marginTop: "3rem" }}>
+            <ul className="education-list">
+              {educations.map((education) => (
+                <li className="education-item">
+                  <h3>{education.title}</h3>
+                  <h4>
+                    @
+                    <a
+                      href={education.url}
+                      className="section-link"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {education.institution}
+                    </a>
+                  </h4>
+                  <p>
+                    {education.date} | {education.marks}
+                  </p>
+                  <p>{education.description}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
-        <section className="experience">
+        <section className="experience" style={{ paddingTop: 0 }}>
           <h2 className="tag section-title hasSpans">
             {getSpannedTitle("Experience")}
           </h2>
